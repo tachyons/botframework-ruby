@@ -15,6 +15,7 @@ module BotFramework
       OAuth2::Client.new(app_id, app_secret,
                          authorize_url: '/common/oauth2/v2.0/authorize',
                          token_url: '/common/oauth2/v2.0/token',
+                         raise_errors: true,
                          site: 'https://login.microsoftonline.com')
     end
 

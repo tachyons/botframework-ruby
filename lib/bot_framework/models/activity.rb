@@ -96,10 +96,10 @@ module BotFramework
 
     def reply(message)
       return false if type != 'message'
-      new_activity = Activity.new(type: 'message',
+       new_activity = Activity.new(type: 'message',
                                   locale: 'en',
                                   text: message,
-                                  from: recipient.as_json)
+                                  from: recipient.to_hash)
       Conversation.new(service_url).reply_to_activity(conversation.id, id, new_activity)
     end
   end

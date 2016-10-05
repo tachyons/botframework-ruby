@@ -33,13 +33,14 @@ module BotFramework
     def initialize(options = {})
       return unless options.is_a?(Hash)
       options.each do |key, value|
-        instance_variable_set("@#{key}", value)
+        instance_variable_set("@#{key}", value) 
       end
     end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
-      @@attribute_map ||= attributes.map do |attribute|
+      #FIXME using class level caching breaks inheritance
+       @attribute_map ||= attributes.map do |attribute|
         { attribute => BotFramework::Util.camel_case_lower(attribute).to_sym }
       end.reduce({}, :merge)
     end
