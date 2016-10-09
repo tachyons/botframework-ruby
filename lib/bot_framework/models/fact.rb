@@ -5,14 +5,6 @@ module BotFramework
 
     attr_accessor :value
 
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-        key: :key,
-        value: :value
-      }
-    end
-
     # Attribute type mapping.
     def self.swagger_types
       {

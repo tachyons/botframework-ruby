@@ -10,7 +10,12 @@ module BotFramework
     end
 
     def valid?
-      true
+      valid_header? &&
+      valid_jwt? &&
+      valid_iss? &&
+      valid_audience? &&
+      valid_token? &&
+      valid_signature? 
     end
 
     private
@@ -34,18 +39,35 @@ module BotFramework
     def token
       auth_header.gsub('Bearer ', '')
     end
-
-    def valid_?
+    
+    def valid_header?
       # The token was sent in the HTTP Authorization header with "Bearer" scheme
       auth_header.start_with? 'Bearer'
+    end
+    # Validations
+
+    def valid_jwt?
       # The token is valid JSON that conforms to the JWT standard (see references)
       JWT.decode token, nil, false
+    end
+
+    def valid_iss?
       # The token contains an issuer claim with value of https://api.botframework.com
       JWT.decode(token, nil, false).first['iss'] == 'https://api.botframework.com'
+    end
+
+    def valid_audience?
       # The token contains an audience claim with a value equivalent to your bot’s Microsoft App ID.
       JWT.decode(token, nil, false).first['aud'] == connector.app_id
+    end
+
+    def valid_token?
       # The token has not yet expired. Industry-standard clock-skew is 5 minutes.
       # Should not raise JWT::ExpiredSignature
+      return true
+    end
+
+    def valid_signature?
       # The token has a valid cryptographic signature with a key listed in the OpenId keys document retrieved in step 1, above.
       true
     end
