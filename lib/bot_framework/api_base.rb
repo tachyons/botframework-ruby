@@ -15,7 +15,7 @@ module BotFramework
     def api_post(local_uri, opts = {})
       uri = service_url + local_uri
       JSON.parse(BotFramework.connector.token.post(uri, body: opts.to_json,
-                                                   headers: { 'Content-Type' => 'application/json' }).body)
+                                                        headers: { 'Content-Type' => 'application/json' }).body)
     end
 
     def api_delete(local_uri)
@@ -23,9 +23,9 @@ module BotFramework
       BotFramework.connector.token.delete(uri)
     end
 
-    def api_request(method,local_uri,opts)
+    def api_request(method, local_uri, opts)
       uri = service_url + local_uri
-      BotFramework.connector.token.request(method,uri,opts)
+      BotFramework.connector.token.request(method, uri, opts)
     end
   end
 end

@@ -11,11 +11,11 @@ module BotFramework
 
     def valid?
       valid_header? &&
-      valid_jwt? &&
-      valid_iss? &&
-      valid_audience? &&
-      valid_token? &&
-      valid_signature?
+        valid_jwt? &&
+        valid_iss? &&
+        valid_audience? &&
+        valid_token? &&
+        valid_signature?
     end
 
     private
@@ -39,7 +39,7 @@ module BotFramework
     def token
       auth_header.gsub('Bearer ', '')
     end
-    
+
     def valid_header?
       # The token was sent in the HTTP Authorization header with "Bearer" scheme
       auth_header.start_with? 'Bearer'
@@ -58,13 +58,13 @@ module BotFramework
 
     def valid_audience?
       # The token contains an audience claim with a value equivalent to your bot’s Microsoft App ID.
-      JWT.decode(token, nil, false).first['aud'] == BotFramework::connector.app_id
+      JWT.decode(token, nil, false).first['aud'] == BotFramework.connector.app_id
     end
 
     def valid_token?
       # The token has not yet expired. Industry-standard clock-skew is 5 minutes.
       # Should not raise JWT::ExpiredSignature
-      return true
+      true
     end
 
     def valid_signature?

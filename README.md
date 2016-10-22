@@ -28,6 +28,16 @@ BotFramework.configure do |connector|
 end
 
 BotFramework::Bot.on :activity do |activity|
+  # Activity.id , identifier of the activity
+  # activity.timestamp
+  # activity.channel_id
+  # activity.from, sender 
+  # activity.conversation
+  # activity.topic_name
+  # activity.locale
+  # activity.text
+  # and so on
+
   BotFramework::Bot.reply(activity,activity.text)
 end
 

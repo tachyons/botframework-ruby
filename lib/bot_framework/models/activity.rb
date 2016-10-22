@@ -96,7 +96,7 @@ module BotFramework
 
     def reply(message)
       return false if type != 'message'
-       new_activity = Activity.new(type: 'message',
+      new_activity = Activity.new(type: 'message',
                                   locale: 'en',
                                   text: message,
                                   from: recipient.to_hash)

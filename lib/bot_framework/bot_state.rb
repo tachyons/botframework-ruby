@@ -1,7 +1,6 @@
 module BotFramework
   class BotState < ApiBase
-   
-    def initialize(service_url)
+    def initialize(_service_url)
       @service_url = 'https://state.botframework.com'
     end
 
