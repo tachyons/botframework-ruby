@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Aboobacker MK']
   spec.email         = ['aboobackervyd@gmail.com']
 
-  spec.summary       = 'Write a short summary, because Rubygems requires one.'
-  spec.description   = 'Write a longer description or delete this line.'
+  spec.summary       = 'Ruby client for microsoft botframework .'
+  spec.description   = 'Unofficial ruby client for microsoft botframework'
   spec.homepage      = 'https://github.com/tachyons/bot-framework-ruby'
   spec.license       = 'MIT'
 
@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'oauth2'
   spec.add_dependency 'jwt'
   spec.add_dependency 'httparty'
+  spec.add_dependency 'rack'
 end

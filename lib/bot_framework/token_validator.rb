@@ -15,7 +15,7 @@ module BotFramework
       valid_iss? &&
       valid_audience? &&
       valid_token? &&
-      valid_signature? 
+      valid_signature?
     end
 
     private
@@ -58,7 +58,7 @@ module BotFramework
 
     def valid_audience?
       # The token contains an audience claim with a value equivalent to your bot’s Microsoft App ID.
-      JWT.decode(token, nil, false).first['aud'] == connector.app_id
+      JWT.decode(token, nil, false).first['aud'] == BotFramework::connector.app_id
     end
 
     def valid_token?
