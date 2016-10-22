@@ -25,7 +25,7 @@ module BotFramework
     def get_conversation_data(opts = {})
       # opts['channel_id'] & opts['conversation_id']
       uri = "/v3/botstate/#{opts['channel_id']}/conversations/#{opts['conversation_id']}"
-      api_get(uri)
+      BotFramework::BotData.new api_get(uri)
     end
 
     # GetPrivateConversationData
@@ -33,9 +33,9 @@ module BotFramework
     # @param channel_id channelId
     # @param conversation_id The id for the conversation on the channel
     # @param user_id id for the user on the channel
-    def get_private_conversation_date(opts = {})
+    def get_private_conversation_data(opts = {})
       uri = "/v3/botstate/#{opts['channel_id']}/conversations/#{opts['conversation_id']}/users/#{opts['user_id']}"
-      api_get(uri)
+      BotFramework::BotData.new api_get(uri)
     end
 
     # GetUserData
@@ -46,7 +46,7 @@ module BotFramework
 
     def get_user_data(opts = {})
       uri = "/v3/botstate/#{opts['channel_id']}/users/#{opts['user_id']}"
-      api_get(uri)
+      BotFramework::BotData.new api_get(uri)
     end
 
     # SetConversationData

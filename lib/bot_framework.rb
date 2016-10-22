@@ -1,6 +1,7 @@
 require 'oauth2'
 require 'jwt'
 require 'httparty'
+require 'json'
 require 'bot_framework/version'
 require 'bot_framework/errors'
 require 'bot_framework/util'
