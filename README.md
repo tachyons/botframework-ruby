@@ -1,6 +1,6 @@
 # BotFramework
 
-Ruby client to make statefull bots using microsoft botframework
+Ruby client to make statefull bots using microsoft botframework . Currently under development , don't try this in under production till v1.0
 
 ## Installation
 
