@@ -11,8 +11,6 @@ module BotFramework
         if verify
           receive
         else
-          p "Errors"
-          p TokenValidator.new(headers).errors.join(",")
           raise InvalidToken
         end
       end
@@ -36,8 +34,14 @@ module BotFramework
            .flatten]
     end
 
+    # Use logger instead of puts
     def verify
-      TokenValidator.new(headers).valid?
+      validator = TokenValidator.new(headers)
+      if validator.valid?
+        return true
+      else
+        p "Errors: #{validator.errors}"
+      end
     rescue JWT::DecodeError
       [401, { 'Content-Type' => 'text/plain' }, ['A token must be passed.']]
     rescue JWT::ExpiredSignature
