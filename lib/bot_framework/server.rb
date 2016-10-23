@@ -11,7 +11,8 @@ module BotFramework
         if verify
           receive
         else
-          puts TokenValidator.new(headers).errors
+          p "Errors"
+          p TokenValidator.new(headers).errors.join(",")
           raise InvalidToken
         end
       end
