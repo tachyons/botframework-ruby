@@ -8,8 +8,12 @@ module BotFramework
       @request = Rack::Request.new env
       @response = Rack::Response.new
       if @request.post?
-        raise InvalidToken unless verify
-        receive
+        if verify
+          receive
+        else
+          puts TokenValidator.new(headers).errors
+          raise InvalidToken
+        end
       end
       @response.finish
     end

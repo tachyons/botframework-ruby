@@ -1,7 +1,7 @@
 module BotFramework
   class TokenValidator
     include HTTParty
-    attr_accessor :headers
+    attr_accessor :headers, :errors
 
     OPEN_ID_CONFIG_URI = 'https://api.aps.skype.com/v1/.well-known/openidconfiguration'.freeze
 
@@ -16,6 +16,10 @@ module BotFramework
         valid_audience? &&
         valid_token? &&
         valid_signature?
+    end
+
+    def errors
+      @errors ||= []
     end
 
     private
@@ -42,23 +46,31 @@ module BotFramework
 
     def valid_header?
       # The token was sent in the HTTP Authorization header with "Bearer" scheme
-      auth_header.start_with? 'Bearer'
+      condition = auth_header.start_with? 'Bearer'
+      @errors << 'Invalid headers' unless condition
+      condition
     end
     # Validations
 
     def valid_jwt?
       # The token is valid JSON that conforms to the JWT standard (see references)
-      JWT.decode token, nil, false
+      condition = JWT.decode token, nil, false
+      @errors << 'Invalid jwt' unless condition
+      condition
     end
 
     def valid_iss?
       # The token contains an issuer claim with value of https://api.botframework.com
-      JWT.decode(token, nil, false).first['iss'] == 'https://api.botframework.com'
+      condition = JWT.decode(token, nil, false).first['iss'] == 'https://api.botframework.com'
+      @errors << 'Invalid iss' unless condition
+      condition
     end
 
     def valid_audience?
       # The token contains an audience claim with a value equivalent to your bot’s Microsoft App ID.
-      JWT.decode(token, nil, false).first['aud'] == BotFramework.connector.app_id
+      condition = JWT.decode(token, nil, false).first['aud'] == BotFramework.connector.app_id
+      @errors << 'Invalid audience' unless condition
+      condition
     end
 
     def valid_token?
