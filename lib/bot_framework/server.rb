@@ -41,6 +41,7 @@ module BotFramework
         return true
       else
         p "Errors: #{validator.errors}"
+        return false
       end
     rescue JWT::DecodeError
       [401, { 'Content-Type' => 'text/plain' }, ['A token must be passed.']]

@@ -38,7 +38,7 @@ BotFramework::Bot.on :activity do |activity|
   # activity.text
   # and so on
 
-  BotFramework::Bot.reply(activity,activity.text)
+  reply(activity,activity.text)
 end
 
 ```

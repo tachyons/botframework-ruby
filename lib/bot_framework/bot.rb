@@ -33,7 +33,7 @@ module BotFramework
         BotFramework::BotState.new('').get_conversation_data(
           'channel_id' => activity.channel_id,
           'conversation_id' => activity.conversation.id
-        ).data
+        ).data || {}
       end
 
       def hooks
