@@ -16,17 +16,6 @@ module BotFramework
     # The name of the thing
     attr_accessor :name
 
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-        address: :address,
-        geo: :geo,
-        has_map: :hasMap,
-        type: :type,
-        name: :name
-      }
-    end
-
     # Attribute type mapping.
     def self.swagger_types
       {

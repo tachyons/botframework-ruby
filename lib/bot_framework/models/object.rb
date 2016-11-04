@@ -1,11 +1,6 @@
 module BotFramework
   class Object < Base
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-      }
-    end
-
+    
     # Attribute type mapping.
     def self.swagger_types
       {

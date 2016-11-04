@@ -12,16 +12,6 @@ module BotFramework
     # (Optional) Topic of the conversation (if supported by the channel)
     attr_accessor :topic_name
 
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-        is_group: :isGroup,
-        bot: :bot,
-        members: :members,
-        topic_name: :topicName
-      }
-    end
-
     # Attribute type mapping.
     def self.swagger_types
       {

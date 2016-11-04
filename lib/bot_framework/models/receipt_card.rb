@@ -24,20 +24,6 @@ module BotFramework
     # Set of actions applicable to the current card
     attr_accessor :buttons
 
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-        title: :title,
-        items: :items,
-        facts: :facts,
-        tap: :tap,
-        total: :total,
-        tax: :tax,
-        vat: :vat,
-        buttons: :buttons
-      }
-    end
-
     # Attribute type mapping.
     def self.swagger_types
       {

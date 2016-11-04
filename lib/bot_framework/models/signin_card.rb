@@ -7,14 +7,6 @@ module BotFramework
     # Action to use to perform signin
     attr_accessor :buttons
 
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-        text: :text,
-        buttons: :buttons
-      }
-    end
-
     # Attribute type mapping.
     def self.swagger_types
       {

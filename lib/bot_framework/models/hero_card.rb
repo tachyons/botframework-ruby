@@ -18,18 +18,6 @@ module BotFramework
     # This action will be activated when user taps on the card itself
     attr_accessor :tap
 
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-        title: :title,
-        subtitle: :subtitle,
-        text: :text,
-        images: :images,
-        buttons: :buttons,
-        tap: :tap
-      }
-    end
-
     # Attribute type mapping.
     def self.swagger_types
       {

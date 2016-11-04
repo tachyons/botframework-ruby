@@ -5,13 +5,6 @@ module BotFramework
     # Entity Type (typically from schema.org types)
     attr_accessor :type
 
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
-      {
-        type: :type
-      }
-    end
-
     # Attribute type mapping.
     def self.swagger_types
       {
