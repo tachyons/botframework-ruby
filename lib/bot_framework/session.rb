@@ -237,9 +237,57 @@ module BotFramework
       stack
     end
 
+    # Clears the current Dialog stack
     def clear_dialog_stack
       @session_state[:call_stack] = []
       @dialog_data = nil
+    end
+
+    # Enumerates all a stacks dialog entries in either a forward or reverse direction.
+    def self.forEachDialogStackEntry(stack)
+      stack.each { |item| yield(item) }
+    end
+
+    # Searches a dialog stack for a specific dialog, in either a forward or reverse direction, returning its index.
+    def self.findEachDialogStackEntry(stack, dialog_id)
+      stack.each_with_index do |item, index|
+        return index if item[:id] = dialog_id
+      end
+      -1
+    end
+
+    # Returns a active stack entry or nil
+    def self.active_dialog_stack_entry(stack)
+      stack.last || nil
+    end
+
+    # Pushes a new dialog into stack and return it as active dialog
+    def self.push_dialog_stack_entry(statck, entry)
+      entry[:state] ||= {}
+      statck ||= []
+      stack.push(entry)
+      entry
+    end
+
+    # Pop active dialog out of the stack
+    def self.pop_dialog_stack_entry(stack)
+      stack.pop if stack
+      Session.active_dialog_stack_entry(stack)
+    end
+
+    #  Deletes all dialog stack entries starting with the specified index and returns the new active dialog.
+    def self.prune_dialog_stack(_stack, _start)
+    end
+
+    # Ensures that all of the entries on a dialog stack reference valid dialogs within a library hierarchy.
+    def self.validate_dialog_stack(_stack, _root)
+    end
+
+    ## Message routing
+    #########################
+
+    # Dispatches handling of the current message to the active dialog stack entry.
+    def route_to_active_dialog
     end
 
     private
