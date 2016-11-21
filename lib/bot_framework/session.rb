@@ -17,6 +17,7 @@ module BotFramework
         dialog_error_message: nil,
         actions: nil
       }
+      @timers = Timers::Group.new
     end
 
     def dispatch(_session_state, message)
@@ -292,11 +293,49 @@ module BotFramework
 
     private
 
+    def start_batch
+      @batch_started = true
+      if(!@sending_batch)
+        @batch_timer.cancel if @batch_timer
+        #TODO send_batch after config[:auto_batch_delay] seconds
+        @batch_timer = @timers.after(config[:auto_batch_delay]) do
+          send_batch
+        end
+      end
+    end
+
+    def create_message
+    end
+
     def prepare_message(msg)
       msg[:type] ||= 'message'
       msg[:address] ||= message[:address]
       msg[:text_locale] ||= message[:text_locale]
       msg
+    end
+
+    def vget_text
+    end
+
+    def validate_call_stack
+    end
+
+    def resolve_dialog_id
+    end
+
+    def cur_library_name
+    end
+
+    def find_dialog
+    end
+
+    def push_dialog
+    end
+
+    def pop_dialog
+    end
+
+    def delete_dialogs
     end
 
     def cur_dialog

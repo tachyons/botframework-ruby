@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'jwt'
   spec.add_dependency 'httparty'
   spec.add_dependency 'rack'
+  spec.add_dependency 'timers'
 end
