@@ -1,11 +1,22 @@
 module BotFramework
-  class Session
+  class Session < Events::EventEmitter
     attr_accessor :library, :message, :user_data, :conversation_data, :private_conversation_data,
                   :session_state, :dialog_state, :localizer
     def initialize(options)
+      super
       @library = options[:library]
       @localizer = options[:localizer]
-      @options = {
+      @msg_sent = false
+      @is_reset = false
+      @last_send_time = Time.now # TODO: Move to proc?
+      @batch = []
+      @batch_timer = Timers::Group.new
+      @batch_started = false
+      @sending_batch = false
+      @in_middleware = false
+      @_locale = nil
+
+      @options = options || {
         on_save: nil,
         on_send: nil,
         library: nil,
@@ -17,14 +28,43 @@ module BotFramework
         dialog_error_message: nil,
         actions: nil
       }
+      @auto_batch_delay = 250 unless options[:auto_batch_delay].is_a? Integer
       @timers = Timers::Group.new
     end
 
-    def dispatch(_session_state, message)
+    def to_recognize_context
+      {
+        message: message,
+        user_data: user_data,
+        conversation_data: conversation_data,
+        private_conversation_data: private_conversation_data,
+        localizer: localizer,
+        dialog_stack: dialog_stack,
+        preferred_locale: preferred_locale,
+        get_text: get_text,
+        nget_text: nget_text,
+        locale: preferred_locale
+      }
+    end
+
+    def dispatch(session_state, message)
       index = 0
       session = self
-      _next = Proc.new
-      session_sate ||= { call_stack: [], last_acess: Time.now, version: 0.0 }
+      now = Time.now
+      middleware = @options[:middleware] || []
+
+      _next = lambda do
+        handler = middleware[index] if index < middleware.length
+        if handler
+          index += 1
+          handler(session, _next)
+        else
+          @in_middleware = false
+          @session_state[:last_acess] = now
+          done
+        end
+      end
+      session_state ||= { call_stack: [], last_acess: Time.now, version: 0.0 }
       # Making sure that dialog is properly initialized
       cur = cur_dialog
       self.dialog_data = cur.state if cur
@@ -36,23 +76,76 @@ module BotFramework
       self
     end
 
+    def error error
+      logger.info "Session error"
+      if options[:dialog_error_message] 
+        end_conversation(options[:dialog_error_message])
+      else
+        #TODO Add localisation
+        locale= preferred_locale
+        end_conversation ("Error in conversation")
+      end
+
+      # TODO Log error
+
+    end
+    
+    def preferred_locale(locale=nil,&block)
+      if locale
+        @_locale = locale
+        @user_data['BotBuilder.Data.PreferredLocale'] = locale if @user_data
+        @localizer.load() if @localizer #TODO
+      elsif !@_locale
+        if @user_data && @user_data['BotBuilder.Data.PreferredLocale']
+          @_locale = @user_data['BotBuilder.Data.PreferredLocale']
+        elsif @message && @message[:text_locale]
+          @_locale = @message[:text_locale]
+        elsif @localizer 
+          @_locale = @localizer[:default_locale]
+        end
+      end
+      @_locale
+    end
+    
+    # Gets and formats localized text string
+    def gettext(message_id,options={})
+      #TODO
+      #stub
+    end
+
+    # Gets and formats the singular/plural form of a localized text string. 
+    def ngettext(message_id,message_id_plural,count)
+    end    
+
+    # Manually save current session state
     def save
       logger.info 'Session.save'
       start_batch
       self
     end
 
-    def send(message)
+    def send(message,args=[])
+      args.unshift(@cur_library_name,message)
+      send_localized(args,message)
     end
 
+    def send_localized(localization_namspace,message,args=[])
+      #TODO Incomplete
+      @msg_sent = true
+      m = {text: message}
+      prepare_message(m)
+      @batch << m
+      self
+    end
+
+    # Sends a typing indicator to the user
     def send_typing
       @msg_sent = true
       m = { type: 'typing' }
       m = prepare_message(m)
       @batch.push(m)
       logger.info 'Send Typing'
-      send_batch
-      self
+      send_batch 
     end
 
     def send_batch
@@ -93,25 +186,7 @@ module BotFramework
       end
     end
 
-    def preferred_locale
-      :en
-    end
-
-    def to_recognize_context
-      {
-        message: message,
-        user_data: user_data,
-        conversation_data: conversation_data,
-        private_conversation_data: private_conversation_data,
-        localizer: localizer,
-        dialog_stack: dialog_stack,
-        preferred_locale: preferred_locale,
-        get_text: get_text,
-        nget_text: nget_text,
-        locale: preferred_locale
-      }
-    end
-
+    
     # Begin a new dialog
     def begin_dialog(id, args = nil)
       logger.info "Beginning new dialog #{id}"
@@ -295,9 +370,9 @@ module BotFramework
 
     def start_batch
       @batch_started = true
-      if(!@sending_batch)
+      unless @sending_batch
         @batch_timer.cancel if @batch_timer
-        #TODO send_batch after config[:auto_batch_delay] seconds
+        # TODO: send_batch after config[:auto_batch_delay] seconds
         @batch_timer = @timers.after(config[:auto_batch_delay]) do
           send_batch
         end
