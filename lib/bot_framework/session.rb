@@ -1,5 +1,5 @@
 module BotFramework
-  class Session < Events::EventEmitter
+  class Session #< Events::EventEmitter
     attr_accessor :library, :message, :user_data, :conversation_data, :private_conversation_data,
                   :session_state, :dialog_state, :localizer
     def initialize(options)
