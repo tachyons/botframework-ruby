@@ -4,4 +4,3 @@ module BotFramework
     end
   end
 end
-

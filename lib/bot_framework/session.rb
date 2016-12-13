@@ -1,5 +1,5 @@
 module BotFramework
-  class Session #< Events::EventEmitter
+  class Session # < Events::EventEmitter
     attr_accessor :library, :message, :user_data, :conversation_data, :private_conversation_data,
                   :session_state, :dialog_state, :localizer
     def initialize(options)
@@ -76,46 +76,44 @@ module BotFramework
       self
     end
 
-    def error error
-      logger.info "Session error"
-      if options[:dialog_error_message] 
+    def error(_error)
+      logger.info 'Session error'
+      if options[:dialog_error_message]
         end_conversation(options[:dialog_error_message])
       else
-        #TODO Add localisation
-        locale= preferred_locale
-        end_conversation ("Error in conversation")
+        # TODO: Add localisation
+        locale = preferred_locale
+        end_conversation 'Error in conversation'
       end
 
-      # TODO Log error
-
+      # TODO: Log error
     end
-    
-    def preferred_locale(locale=nil,&block)
+
+    def preferred_locale(locale = nil)
       if locale
         @_locale = locale
         @user_data['BotBuilder.Data.PreferredLocale'] = locale if @user_data
-        @localizer.load() if @localizer #TODO
+        @localizer.load if @localizer # TODO
       elsif !@_locale
         if @user_data && @user_data['BotBuilder.Data.PreferredLocale']
           @_locale = @user_data['BotBuilder.Data.PreferredLocale']
         elsif @message && @message[:text_locale]
           @_locale = @message[:text_locale]
-        elsif @localizer 
+        elsif @localizer
           @_locale = @localizer[:default_locale]
         end
       end
       @_locale
     end
-    
+
     # Gets and formats localized text string
-    def gettext(message_id,options={})
-      #TODO
-      #stub
+    def gettext(message_id, options = {})
+      # TODO
+      # stub
     end
 
-    # Gets and formats the singular/plural form of a localized text string. 
-    def ngettext(message_id,message_id_plural,count)
-    end    
+    # Gets and formats the singular/plural form of a localized text string.
+    def ngettext(message_id, message_id_plural, count); end
 
     # Manually save current session state
     def save
@@ -124,15 +122,15 @@ module BotFramework
       self
     end
 
-    def send(message,args=[])
-      args.unshift(@cur_library_name,message)
-      send_localized(args,message)
+    def send(message, args = [])
+      args.unshift(@cur_library_name, message)
+      send_localized(args, message)
     end
 
-    def send_localized(localization_namspace,message,args=[])
-      #TODO Incomplete
+    def send_localized(_localization_namspace, message, _args = [])
+      # TODO: Incomplete
       @msg_sent = true
-      m = {text: message}
+      m = { text: message }
       prepare_message(m)
       @batch << m
       self
@@ -145,7 +143,7 @@ module BotFramework
       m = prepare_message(m)
       @batch.push(m)
       logger.info 'Send Typing'
-      send_batch 
+      send_batch
     end
 
     def send_batch
@@ -186,7 +184,6 @@ module BotFramework
       end
     end
 
-    
     # Begin a new dialog
     def begin_dialog(id, args = nil)
       logger.info "Beginning new dialog #{id}"
@@ -290,11 +287,9 @@ module BotFramework
       self
     end
 
-    def cancel_dialog
-    end
+    def cancel_dialog; end
 
-    def reset
-    end
+    def reset; end
 
     ############### Dialog Stack Management ############################33
 
@@ -363,8 +358,7 @@ module BotFramework
     #########################
 
     # Dispatches handling of the current message to the active dialog stack entry.
-    def route_to_active_dialog
-    end
+    def route_to_active_dialog; end
 
     private
 
@@ -379,8 +373,7 @@ module BotFramework
       end
     end
 
-    def create_message
-    end
+    def create_message; end
 
     def prepare_message(msg)
       msg[:type] ||= 'message'
@@ -389,29 +382,21 @@ module BotFramework
       msg
     end
 
-    def vget_text
-    end
+    def vget_text; end
 
-    def validate_call_stack
-    end
+    def validate_call_stack; end
 
-    def resolve_dialog_id
-    end
+    def resolve_dialog_id; end
 
-    def cur_library_name
-    end
+    def cur_library_name; end
 
-    def find_dialog
-    end
+    def find_dialog; end
 
-    def push_dialog
-    end
+    def push_dialog; end
 
-    def pop_dialog
-    end
+    def pop_dialog; end
 
-    def delete_dialogs
-    end
+    def delete_dialogs; end
 
     def cur_dialog
       ss = @session_sate
