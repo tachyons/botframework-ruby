@@ -1,6 +1,6 @@
 require 'chronic'
 module BotFramework
-  module Dialog
+  module Dialogs
     class EntityRecognizer
       DATE_REGEX = /^\d{4}-\d{2}-\d{2}/i
       YES_REGEX = /^(1|y|yes|yep|sure|ok|true)(\W|$)/i
@@ -93,7 +93,6 @@ module BotFramework
           score = 0.0
           value = choice.strip.downcase
           if value.include?(utterance)
-            p 'one'
             score = utterance.size.to_f / value.size
           elsif utterance.include? value
             score = [0.5 + (value.size.to_f / utterance.size), 0.9].min
