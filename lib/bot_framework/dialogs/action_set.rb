@@ -9,7 +9,7 @@ module BotFramework
 
       def clone(copy_to = nil)
         obj = copy_to || ActionSet.new
-        obj.trigger = self.trigger
+        obj.trigger = trigger
         actions.each do |name|
           object.actions[name] = actions[name]
         end
@@ -18,20 +18,16 @@ module BotFramework
 
       def add_dialog_trigger(actions, dialog_id)
         if trigger
-          trigger.localization_namespace = dialog_id.split(":").first
+          trigger.localization_namespace = dialog_id.split(':').first
           actions.begin_dialog_action(dialog_id, dialog_id, trigger)
         end
       end
 
-      def find_action_routes(context, callback)
-      end
+      def find_action_routes(context, callback); end
 
-      def select_action_route(session,route)
-      end
+      def select_action_route(session, route); end
 
-      def dialog_interrupted(session,dialog_id,dialog_ags)
-
-      end
+      def dialog_interrupted(session, dialog_id, dialog_ags); end
 
       def begin_dialog_action(name, id, options = {}); end
 
