@@ -29,4 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'httparty'
   spec.add_dependency 'rack'
   spec.add_dependency 'timers'
+  spec.add_dependency 'rb-readline'
+  spec.add_dependency 'chronic'
+  spec.add_dependency 'chronic_duration'
 end
