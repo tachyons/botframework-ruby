@@ -8,7 +8,7 @@ module BotFramework
       def recognize(context,&block)
         result = { score: 0.0, intent: nil }
         if context && context[:message] && context[:message][:text]
-          utterance = context[:message]
+          utterance = context[:message][:text]
           locale = context[:locale] || '*'
           model = @models[locale] || @models['*']
           if model
@@ -20,7 +20,7 @@ module BotFramework
                 top = intents.max {|intent| intent[score]}
                 if top
                   result[:score] = top[:score]
-                  result[:intent] = top[:score]
+                  result[:intent] = top[:intent]
                   case top[:intent].downcase
                   when 'builtin.intent.none'
                   when 'none'
