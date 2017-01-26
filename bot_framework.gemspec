@@ -32,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rb-readline'
   spec.add_dependency 'chronic'
   spec.add_dependency 'chronic_duration'
+  spec.add_dependency 'nio4r'
 end

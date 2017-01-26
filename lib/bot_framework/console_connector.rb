@@ -1,4 +1,5 @@
 require 'observer'
+require 'nio'
 module BotFramework
   class ConsoleConnector
     include Observable

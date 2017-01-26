@@ -7,10 +7,16 @@ module BotFramework
 
       def trigger(event, *args)
         # hooks.fetch(event).call(*args)
+        if hooks[event].nil?
+          p "No call back registered for #{event}"
+          return false
+        end
         instance_exec *args, &hooks.fetch(event)
       end
 
       def receive(payload)
+        trigger(payload.type.to_sym)
+        # Run on default
         trigger(:activity, payload)
       end
 
