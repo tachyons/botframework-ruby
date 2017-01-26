@@ -7,7 +7,7 @@ module BotFramework
         hooks[event] = block
       end
 
-      def on_intent(intent,&block)
+      def on_intent(intent, &block)
         intent_callbacks[intent] = block
       end
 
@@ -20,12 +20,12 @@ module BotFramework
         instance_exec *args, &hooks.fetch(event)
       end
 
-      def trigger_intent_call_back(intent,*args)
-       if intent_callbacks[intent].nil?
+      def trigger_intent_call_back(intent, *args)
+        if intent_callbacks[intent].nil?
           p "No call back registered for #{intent}"
-          trigger_intent_call_back(:default,*args) if intent_callbacks[:default]
+          trigger_intent_call_back(:default, *args) if intent_callbacks[:default]
           return false
-        end
+         end
         instance_exec *args, &intent_callbacks.fetch(intent)
       end
 
@@ -33,7 +33,7 @@ module BotFramework
         trigger(payload.type.to_sym)
         # Run on default
         trigger(:activity, payload)
-        recognizer.recognize({message: payload.as_json}) do |error , intents|
+        recognizer.recognize(message: payload.as_json) do |_error, intents|
           trigger_intent_call_back(intents[:intent], payload, intents)
         end
       end

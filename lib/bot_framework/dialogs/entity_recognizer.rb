@@ -11,7 +11,7 @@ module BotFramework
 
       def self.find_entity(entities, type)
         # raise ArgumentError unless entities.is_a? Hash
-        entities.find { |entity| entity[:type] == type}
+        entities.find { |entity| entity[:type] == type }
       end
 
       def self.find_all_entities(entities, type)

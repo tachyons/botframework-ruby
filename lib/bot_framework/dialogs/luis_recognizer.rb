@@ -5,19 +5,21 @@ module BotFramework
         @models = { '*' => models }
       end
 
-      def recognize(context,&block)
+      def recognize(context)
         result = { score: 0.0, intent: nil }
         if context && context[:message] && context[:message][:text]
           utterance = context[:message][:text]
           locale = context[:locale] || '*'
           model = @models[locale] || @models['*']
           if model
-            LuisRecognizer.recognize(utterance,model) do |error, intents, entities|
-              unless error
+            LuisRecognizer.recognize(utterance, model) do |error, intents, entities|
+              if error
+                yield 'Error', nil
+              else
                 result[:intents] = intents
                 result[:entities] = entities
 
-                top = intents.max {|intent| intent[score]}
+                top = intents.max { |intent| intent[score] }
                 if top
                   result[:score] = top[:score]
                   result[:intent] = top[:intent]
@@ -28,18 +30,15 @@ module BotFramework
                   end
                 end
                 yield nil, result
-              else
-                yield "Error",nil
               end
               yield nil, result
             end
           else
-            yield StandardError.new("Luis model not found for locale #{locale}"),nil
+            yield StandardError.new("Luis model not found for locale #{locale}"), nil
           end
         else
-          yield nil,result
+          yield nil, result
         end
-
       end
 
       def self.recognize(utterance, model_uri)
@@ -48,7 +47,7 @@ module BotFramework
         uri += URI.encode_www_form_component(utterance || '')
         result = JSON.parse HTTParty.get(uri).body
         # Symbolize keys
-        result = result.inject({}){|temp,(k,v)| temp[k.to_sym] = v; temp}
+        result = result.each_with_object({}) { |(k, v), temp| temp[k.to_sym] = v; temp }
         result[:intents] ||= []
         result[:entities] ||= []
         if result[:topScoringIntent] && result[:intents].empty?
@@ -60,11 +59,11 @@ module BotFramework
         end
         # Symbolize keys
         result[:intents].map! do |intent|
-          intent.inject({}){|temp,(k,v)| temp[k.to_sym] = v; temp}
+          intent.each_with_object({}) { |(k, v), temp| temp[k.to_sym] = v; temp }
         end
 
         result[:entities].map! do |entity|
-          entity.inject({}){|temp,(k,v)| temp[k.to_sym] = v; temp}
+          entity.each_with_object({}) { |(k, v), temp| temp[k.to_sym] = v; temp }
         end
         yield nil, result[:intents], result[:entities]
       end

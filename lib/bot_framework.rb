@@ -43,7 +43,6 @@ require 'bot_framework/dialogs/entity_recognizer'
 require 'bot_framework/dialogs/luis_recognizer'
 require 'bot_framework/dialogs/reg_exp_recognizer'
 
-
 module BotFramework
   class << self
     attr_accessor :connector
