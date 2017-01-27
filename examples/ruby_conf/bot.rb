@@ -5,6 +5,13 @@ BotFramework.configure do |connector|
 end
 
 SPEAKER_DATA = YAML.load_file('speaker_data.yaml')
+RUBY_CONF_DATA = {
+  'when'=> 'Jan 27, 28, 29',
+  'where' => 'Kochi',
+  'venue' => 'Le Méridien Kochi',
+  'organisers' => 'Emerging technology trust',
+  'website' => 'http://rubyconfindia.org/'
+}
 
 BotFramework::Bot.recognizer = BotFramework::Dialogs::LuisRecognizer.new('https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/f5104c51-8adc-4846-ba86-058ee25d88b2?subscription-key=d670862831e046c9bf1d8e9b0c485df2&q=')
 
@@ -30,7 +37,7 @@ def speaker_data(activity, entities, field)
     set_conversation_data(activity, speaker: speaker)
     (SPEAKER_DATA[speaker[:entity]] || SPEAKER_DATA[speaker['entity']])[field]
   elsif speaker
-    "Unable to find the speaker #{speaker}"
+    "Unable to find the speaker #{speaker[:entity]}"
   else
     'Could not find the speaker'
   end
@@ -66,8 +73,14 @@ BotFramework::Bot.on_intent 'eventSchedule' do |activity, intents|
   # reply(activity, speaker_data(activity, entities,'talk_date'))
 end
 
-BotFramework::Bot.on_intent 'rubyconfDetails' do |_activity, intents|
+BotFramework::Bot.on_intent 'rubyconfDetails' do |activity, intents|
   entities = intents[:entities]
+  detail = BotFramework::Dialogs::EntityRecognizer.find_entity(entities, 'eventDetailType')
+  if detail && RUBY_CONF_DATA[detail[:entity]]
+    reply(activity, RUBY_CONF_DATA[detail[:entity]])
+  else
+    reply(activity, "Sorry, I coudn't find that data")
+  end
 end
 
 BotFramework::Bot.on_intent :default do |activity, _intents|
