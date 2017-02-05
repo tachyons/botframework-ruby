@@ -1,6 +1,5 @@
 module BotFramework
   class Object < Base
-    
     # Attribute type mapping.
     def self.swagger_types
       {

@@ -61,14 +61,16 @@ module BotFramework
 
     def valid_iss?
       # The token contains an issuer claim with value of https://api.botframework.com
-      condition = JWT.decode(token, nil, false).first['iss'] == 'https://api.botframework.com'
-      errors << 'Invalid iss' unless condition
+      iss = JWT.decode(token, nil, false).first['iss']
+      condition = iss == 'https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/'
+      errors << "Invalid iss #{iss}" unless condition
       condition
     end
 
     def valid_audience?
       # The token contains an audience claim with a value equivalent to your bot’s Microsoft App ID.
-      condition = (JWT.decode(token, nil, false).first['aud'] == BotFramework.connector.app_id)
+      # condition = (JWT.decode(token, nil, false).first['aud'] == BotFramework.connector.app_id)
+      condition = (JWT.decode(token, nil, false).first['aud'] == 'https://graph.microsoft.com')
       errors << 'Invalid audience' unless condition
       condition
     end

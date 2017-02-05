@@ -12,6 +12,7 @@ require 'bot_framework/bot_state'
 require 'bot_framework/token_validator'
 require 'bot_framework/bot'
 require 'bot_framework/server'
+# Models
 require 'bot_framework/models/base'
 require 'bot_framework/models/activity'
 require 'bot_framework/models/api_response'
@@ -36,6 +37,11 @@ require 'bot_framework/models/receipt_item'
 require 'bot_framework/models/resource_response'
 require 'bot_framework/models/signin_card'
 require 'bot_framework/models/thumbnail_card'
+
+# Dialog
+require 'bot_framework/dialogs/entity_recognizer'
+require 'bot_framework/dialogs/luis_recognizer'
+require 'bot_framework/dialogs/reg_exp_recognizer'
 
 module BotFramework
   class << self

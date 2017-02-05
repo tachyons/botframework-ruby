@@ -1,0 +1,41 @@
+'aaron cruz':
+    twitter: mraaroncruz
+    talk_date: '29 Jan 2017'
+    description: 'Aaron lives in the suburbs of Vienna, Austria but is a native of the suburbs of Seattle. In his former life he was a shepherd, a cheesemaker and a sous chef. Now he is freelancing, building native iOS and Android apps and their respective API''s. In his spare time, he organizes a range of user groups in Vienna. If you get him started talking about food, he may never stop.'
+    topic: 'This Bot Will Pump You Up!'
+'adam hawkins':
+    twitter: adman65
+    talk_date: '29 Jan 2017'
+    description: 'Adam is a proud traveller and trance addict. He lives in Bangalore, India. Right now his full time gig is for Saltside. He runs the SRE team and trains a new generation of engineers how to build, ship and operate production systems according to the DevOps philosophy using Docker.'
+    topic: 'Production Ready Ruby'
+'anagha r':
+    topic: 'Getting Started With Rails'
+    description: 'Anagha is an undergraduate student doing her computer science and engineering from Amrita University and an open source enthusiast. She has developed a basic application in Ruby on Rails and is currently developing it based upon her existing knowledge. She is a GHCI2016 student scholar and an advisor for the #include fellowship program by the she++ communit'
+'anil wadghule':
+    topic: 'Talk: concurrent-ruby modern tools explained'
+    description: 'Anil is currently an Independent Software Consultant and helps organising Deccan RubyConf. When not programming, he spends time in exploring music around the world. Emacs is his text editor of choice. He loves learning different programming languages so that he can use right one at right place. He believes in improvising solutions till they are perfectly right.'
+'kiran narasareddy':
+    topic: '10 things (not) to do before going to production with rails+mongo+sidekiq'
+    description: 'Kiran, one of the Co-Founders, heads the Technology division at Amura. With a passion for all things tech, he is always on the lookout for the latest trends and has been successful in leveraging them to maintain Amura''s competitive advantage in the digital space. Kiran''s expertise in technology took root right from his college days, where he built a complex decision-making engine for the US mortgage industry. Consequently, his proficiency in defining high level design and architecture, his data modelling skills as well as his acute interest in executing large scale systems have helped Amura launch Sell.Do, an industry leader in Real Estate Sales and Marketing Automation. With a penchant for coming up with quirky names for products, Kiran can usually be found wired into his mac, hacking on for the next big thing for Amura'
+'prasun anand':
+    topic: 'Scientific Computing on JRuby'
+    description: 'Prasun is a final-year student at BITS Pilani, Goa, India pursuing a dual degree in M.Sc. in Biological Sciences and B.E. in Chemical Engineering. He is a SciRuby contributor, Bioinformatics enthusiast and has worked on ''JRuby port of NMatrix'' in context of GSoC 2016. In his earlier days, he contributed to Javascript projects. Currently, he is working on bringing High-Performance GPU computation to Ruby (MRI and JRuby) using OpenCL by building ArrayFire gem. In his spare time, he likes playing Mortal Komba'
+'richard dchneeman':
+    topic: SLOMO
+    description: 'Richard ''Ruby Hero'' Schneems writes Ruby at Heroku, maintains CodeTriage.com, and co-organizes Keep Ruby Weird. He is in the top 50 Rails contributors and is an accidental maintainer of Sprockets. When he isn''t obsessively compulsively woodworking he writes such gems as Wicked, and derailed_benchmarks. Schneems wants you to have a nice day.'
+'sameer deshmukh':
+    topic: 'Introducing Rubex: A better way to write Ruby extensions'
+    description: 'Sameer is a Computer Engineering graduate from Pune University. He maintains scientific Ruby libraries as a maintainer for the Ruby Science Foundation (SciRuby). He is the author of daru, a DataFrame library for Ruby and is currently working full time on building Rubex, a new language to make it easier to write extensions for Ruby. He loves solo travelling and is also a part time musician - playing the bass guitar for his band Cat Kamikazee.'
+'shashank date':
+    topic: '(m)Ruby on small devices'
+    description: 'Shashank Daté has been programming in Ruby professionally since 2002. He has contributed to the very early versions of Ruby One Click installer on Windows and win32utils - a set of Ruby libraries for Windows. He is the technical editor of The Ruby Way (2nd. ed) by Hal Fulton. He has been instrumental in making Ruby popular in his hometowns (KC, USA and Pune, India). He co-founded Kansas City Ruby User Group. In 2011/12, he was on the organizing committee of Ruby Midwest regional conferences.'
+'shaunak pagnis':
+    topic: '(m)Ruby on small devices'
+    description: 'Shaunak is a core team member of Amura''s product division, Sell.Do, where he contributes to large scale Rails based products. Introduced to Ruby 4 years ago, it has since been his go-to language. When not working, you''ll probably find him listening to Metallica or exploring complex magic systems of Brandon Sanderson''s Cosmere.'
+'swanand pagnis':
+    topic: 'It''s 2017, and I _still_ want to sell you a graph database!'
+    description: 'Swanand is a Principal Engineer at First.io and an organiser at Garden City RubyConf. Fancy titles apart, he''s a software engineer who spent the last decade writing some bad code, and some good code, and shipping software to users. He loves writing software, building communities, and ranting on Twitter.'
+'yukihiro matsumoto':
+    topic: 'Opening Keynote'
+    description: 'Yukihiro ''Matz'' Matsumoto is a programmer, and the creator of the Ruby language. He works for many open source related organizations and companies, e.g. NaCl inc. in Japan, Heroku and Ruby Association. Since his real name is difficult for non-Japanese speakers to pronounce correctly, he uses the nickname Matz on the Net. Matz spoke at RubyConfIndia 2016.'
+
