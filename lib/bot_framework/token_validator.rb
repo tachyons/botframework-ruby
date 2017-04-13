@@ -46,7 +46,7 @@ module BotFramework
 
     def valid_header?
       # The token was sent in the HTTP Authorization header with "Bearer" scheme
-      condition = auth_header.start_with? 'Bearer'
+      condition = auth_header and auth_header.start_with? 'Bearer'
       errors << 'Invalid headers' unless condition
       condition
     end
