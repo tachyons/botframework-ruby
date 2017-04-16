@@ -43,6 +43,16 @@ end
 
 ```
 
+## Emulator
+
+You can use botframework emulator for testing your bot in local system.
+* Download https://github.com/Microsoft/BotFramework-Emulator
+* run `rackup` in the bot directory
+* Give url(default url for rackup is `localhost:9292`) and botframework credentials in the emulator
+
+![emulator1](images/emulator1.png)
+![emulator2](images/emulator2.png)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
