@@ -20,8 +20,8 @@ module BotFramework
           exp = @expressions[locale] ? @expressions[locale] : @expressions[:*]
           if exp
             matches = exp.match(utterance)
-            if matches && matches.length
-              matched = matches.first
+            if matches && matches.length > 0
+              matched = matches.to_s
               result[:score] = matched.length / utterance.length
               result[:intent] = intent
               result[:expression] = exp
