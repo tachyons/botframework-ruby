@@ -35,7 +35,7 @@ module BotFramework
         trigger(:activity, payload)
         return unless recognizer
         recognizer.recognize(message: payload.as_json) do |_error, intents|
-          trigger_intent_call_back(intents[:intent], payload, intents)
+          trigger_intent_call_back(intents[:intent], payload, intents) if intents[:intent]
         end
       end
 
