@@ -9,7 +9,7 @@ module BotFramework
           @expressions = {'*': expressions}
         else
           @expressions = expressions || {}
-        end 
+        end
       end
 
       def recognize(context)
@@ -20,7 +20,7 @@ module BotFramework
           exp = @expressions[locale] ? @expressions[locale] : @expressions[:*]
           if exp
             matches = exp.match(utterance)
-            if matches && matches.length > 0
+            if matches
               matched = matches.to_s
               result[:score] = matched.length / utterance.length
               result[:intent] = intent
