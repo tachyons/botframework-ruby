@@ -13,6 +13,7 @@ module BotFramework
       end
 
       def recognize(context)
+        raise ArgumentError, "context must be a hash" unless context.is_a? Hash
         result = {score: 0.0, intent: nil}
         if context.dig(:message,:text)
           utterance = context[:message][:text]
