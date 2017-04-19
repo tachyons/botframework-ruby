@@ -1,0 +1,63 @@
+PATH
+  remote: ../..
+  specs:
+    bot_framework (0.1.0beta)
+      chronic
+      chronic_duration
+      httparty
+      jwt
+      nio4r
+      oauth2
+      rack
+      rb-readline
+      timers
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    chronic (0.10.2)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
+    coderay (1.1.1)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
+    hitimes (1.2.4)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
+    jwt (1.5.6)
+    method_source (0.8.2)
+    multi_json (1.12.1)
+    multi_xml (0.6.0)
+    multipart-post (2.0.0)
+    nio4r (2.0.0)
+    numerizer (0.1.1)
+    oauth2 (1.3.1)
+      faraday (>= 0.8, < 0.12)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    puma (3.8.2)
+    rack (2.0.1)
+    rb-readline (0.5.4)
+    slop (3.6.0)
+    timers (4.1.2)
+      hitimes
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bot_framework!
+  pry
+  puma
+
+RUBY VERSION
+   ruby 2.4.0p0
+
+BUNDLED WITH
+   1.14.6
