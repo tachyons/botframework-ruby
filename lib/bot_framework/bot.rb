@@ -29,7 +29,7 @@ module BotFramework
       def trigger(event, *args)
         # hooks.fetch(event).call(*args)
         if hooks[event].nil?
-          p "No call back registered for #{event}"
+          BotFramework.logger.info "No call back registered for #{event}"
           return false
         end
         instance_exec(*args, &hooks.fetch(event))
@@ -37,7 +37,7 @@ module BotFramework
 
       def trigger_intent_call_back(intent, *args)
         if intent_callbacks[intent].nil?
-          p "No call back registered for #{intent}"
+          BotFramework.logger.info "No call back registered for #{intent}"
           trigger_intent_call_back(:default, *args) if intent_callbacks[:default]
           return false
         end
@@ -60,7 +60,7 @@ module BotFramework
       end
 
       def user_data=(data)
-        p "Data set as #{data}"
+        BotFramework.logger.info "Data set as #{data}"
       end
 
       def set_conversation_data(activity, data)

@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/tachyons/botframework-ruby.git
-  revision: a44761a16af01426e44a2789f9a85c559cc39c04
+  revision: 6970d4c6d2fe9c13e2425194dbc2b47627e35f5e
   branch: master
   specs:
     bot_framework (0.1.0beta)
@@ -43,7 +43,7 @@ GEM
     hitimes (1.2.4)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
-    json (2.0.3)
+    json (2.1.0)
     jwt (1.5.6)
     method_source (0.8.2)
     multi_json (1.12.1)

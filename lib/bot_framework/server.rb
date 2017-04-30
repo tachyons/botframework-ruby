@@ -40,7 +40,7 @@ module BotFramework
       if validator.valid?
         return true
       else
-        p "Errors: #{validator.errors}"
+        BotFramework.logger.error "Errors: #{validator.errors}"
         return false
       end
     rescue JWT::DecodeError

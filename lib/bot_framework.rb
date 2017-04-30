@@ -2,6 +2,8 @@ require 'oauth2'
 require 'jwt'
 require 'httparty'
 require 'json'
+require 'logger'
+
 require 'bot_framework/version'
 require 'bot_framework/errors'
 require 'bot_framework/util'
@@ -49,6 +51,10 @@ module BotFramework
 
     def configure(*args, &block)
       @connector = Connector.new(*args, &block)
+    end
+
+    def logger
+      @logger ||= defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
     end
   end
 end
