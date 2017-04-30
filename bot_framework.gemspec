@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Ruby client for microsoft botframework .'
   spec.description   = 'Unofficial ruby client for microsoft botframework'
-  spec.homepage      = 'https://github.com/tachyons/bot-framework-ruby'
+  spec.homepage      = 'https://github.com/tachyons/botframework-ruby'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
