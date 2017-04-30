@@ -1,6 +1,7 @@
 # BotFramework
 
 [![Build Status](https://travis-ci.org/tachyons/botframework-ruby.svg?branch=master)](https://travis-ci.org/tachyons/botframework-ruby)
+[![Build status](https://ci.appveyor.com/api/projects/status/fdbwdbvv3viswwec?svg=true)](https://ci.appveyor.com/project/tachyons/botframework-ruby)
 
 Ruby client to make statefull bots using microsoft botframework . Currently under development , don't try this in under production till v1.0
 
