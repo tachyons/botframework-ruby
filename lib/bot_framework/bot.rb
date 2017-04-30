@@ -1,7 +1,8 @@
 module BotFramework
   class Bot
     class << self
-      attr_accessor :recognizer
+      extend Gem::Deprecate
+      attr_accessor :recognizers
 
       def on(event, &block)
         hooks[event] = block
@@ -11,13 +12,27 @@ module BotFramework
         intent_callbacks[intent] = block
       end
 
+      def recognizer=(recognizer)
+        warn "DEPRECATED: Use add_recognizer method instead"
+        add_recognizer(recognizer)
+      end
+      deprecate :recognizer=, :add_recognizer, 2016, 5
+
+      def add_recognizer(recognizer)
+        recognizers << recognizer
+      end
+
+      def recognizers
+        @recognizers ||= []
+      end
+
       def trigger(event, *args)
         # hooks.fetch(event).call(*args)
         if hooks[event].nil?
           p "No call back registered for #{event}"
           return false
         end
-        instance_exec *args, &hooks.fetch(event)
+        instance_exec(*args, &hooks.fetch(event))
       end
 
       def trigger_intent_call_back(intent, *args)
@@ -25,17 +40,18 @@ module BotFramework
           p "No call back registered for #{intent}"
           trigger_intent_call_back(:default, *args) if intent_callbacks[:default]
           return false
-         end
-        instance_exec *args, &intent_callbacks.fetch(intent)
+        end
+        instance_exec(*args, &intent_callbacks.fetch(intent))
       end
 
       def receive(payload)
         trigger(payload.type.to_sym)
         # Run on default
         trigger(:activity, payload)
-        return unless recognizer
-        recognizer.recognize(message: payload.as_json) do |_error, intents|
-          trigger_intent_call_back(intents[:intent], payload, intents) if intents[:intent]
+        recognizers.each do |recognizer|
+          recognizer.recognize(message: payload.as_json) do |_error, intents|
+            trigger_intent_call_back(intents[:intent], payload, intents) if intents[:intent]
+          end
         end
       end
 
