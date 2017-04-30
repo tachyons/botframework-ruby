@@ -4,12 +4,12 @@ module BotFramework
   class ConsoleConnector
     include Observable
     def listen
-      p 'Listening'
+      BotFramework.logger.info 'Listening'
       loop do
         line = Readline.readline('> ')
         break if line.nil? || line == 'quit'
         Readline::HISTORY.push(line)
-        puts "You typed: #{line}"
+        BotFramework.logger.info "You typed: #{line}"
       end
       self
     end
