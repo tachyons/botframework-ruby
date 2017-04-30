@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: git://github.com/tachyons/botframework-ruby.git
-  revision: 6970d4c6d2fe9c13e2425194dbc2b47627e35f5e
+  revision: da69ae3b95d576479beec6b3a72827f2f31099c2
   branch: master
   specs:
-    bot_framework (0.1.0beta)
+    bot_framework (0.1.0beta2)
       chronic
       chronic_duration
       httparty
