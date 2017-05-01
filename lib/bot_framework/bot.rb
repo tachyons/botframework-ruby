@@ -65,13 +65,14 @@ module BotFramework
 
       def set_conversation_data(activity, data)
         data = BotFramework::BotData.new(data: data, e_tag: '*') if data.is_a? Hash
-        BotFramework::BotState.new('').set_conversation_data('channel_id' => activity.channel_id,
+        BotFramework::BotState.new(activity.service_url).
+          set_conversation_data('channel_id' => activity.channel_id,
                                                              'conversation_id' => activity.conversation.id,
                                                              'bot_data' => data)
       end
 
       def conversation_data(activity)
-        BotFramework::BotState.new('').get_conversation_data(
+        BotFramework::BotState.new(activity.service_url).get_conversation_data(
           'channel_id' => activity.channel_id,
           'conversation_id' => activity.conversation.id
         ).data || {}

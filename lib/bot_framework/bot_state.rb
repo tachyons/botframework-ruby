@@ -1,7 +1,7 @@
 module BotFramework
   class BotState < ApiBase
-    def initialize(_service_url)
-      @service_url = 'https://state.botframework.com'
+    def initialize(service_url = nil)
+      @service_url = service_url || 'https://state.botframework.com'
     end
 
     # DeleteStateForUser
