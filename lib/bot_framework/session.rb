@@ -234,7 +234,7 @@ module BotFramework
       if cur
         if message
           m = if (message.is_a? String) || (message.is_a? Array)
-                create_message(cur_library_name, message, args)
+            create_message(cur_library_name, message, args)
               else
                 message
               end
@@ -299,7 +299,7 @@ module BotFramework
         # Update stack and dialog data
 
         stack = @session_state[:call_stack] = new_stack || []
-        @dialog_data = stack.empty? nil || stack.last
+        @dialog_data = stack.empty? ? nil : stack.last
       else
         # Copy over dialog data to slack
         stack = @session_state[:call_stack] || []
@@ -362,46 +362,46 @@ module BotFramework
 
     private
 
-    def start_batch
-      @batch_started = true
-      unless @sending_batch
-        @batch_timer.cancel if @batch_timer
-        # TODO: send_batch after config[:auto_batch_delay] seconds
-        @batch_timer = @timers.after(config[:auto_batch_delay]) do
-          send_batch
+      def start_batch
+        @batch_started = true
+        unless @sending_batch
+          @batch_timer.cancel if @batch_timer
+          # TODO: send_batch after config[:auto_batch_delay] seconds
+          @batch_timer = @timers.after(config[:auto_batch_delay]) do
+            send_batch
+          end
         end
       end
-    end
 
-    def create_message; end
+      def create_message; end
 
-    def prepare_message(msg)
-      msg[:type] ||= 'message'
-      msg[:address] ||= message[:address]
-      msg[:text_locale] ||= message[:text_locale]
-      msg
-    end
+      def prepare_message(msg)
+        msg[:type] ||= 'message'
+        msg[:address] ||= message[:address]
+        msg[:text_locale] ||= message[:text_locale]
+        msg
+      end
 
-    def vget_text; end
+      def vget_text; end
 
-    def validate_call_stack; end
+      def validate_call_stack; end
 
-    def resolve_dialog_id; end
+      def resolve_dialog_id; end
 
-    def cur_library_name; end
+      def cur_library_name; end
 
-    def find_dialog; end
+      def find_dialog; end
 
-    def push_dialog; end
+      def push_dialog; end
 
-    def pop_dialog; end
+      def pop_dialog; end
 
-    def delete_dialogs; end
+      def delete_dialogs; end
 
-    def cur_dialog
-      ss = @session_sate
-      cur = ss.call_stack.last unless ss.call_stack.empty?
-      cur
-    end
+      def cur_dialog
+        ss = @session_sate
+        cur = ss.call_stack.last unless ss.call_stack.empty?
+        cur
+      end
   end
 end

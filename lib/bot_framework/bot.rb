@@ -13,7 +13,7 @@ module BotFramework
       end
 
       def recognizer=(recognizer)
-        warn "DEPRECATED: Use add_recognizer method instead"
+        warn 'DEPRECATED: Use add_recognizer method instead'
         add_recognizer(recognizer)
       end
       deprecate :recognizer=, :add_recognizer, 2016, 5

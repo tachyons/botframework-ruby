@@ -56,11 +56,11 @@ module BotFramework
 
       private
 
-      def action(_name, _options = {})
-        yield
-      end
+        def action(_name, _options = {})
+          yield
+        end
 
-      def recognize_action(message); end
+        def recognize_action(message); end
     end
   end
 end

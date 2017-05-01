@@ -60,7 +60,7 @@ module BotFramework
       def self.parse_number(entities)
         entity = nil
         entity = if entities.is_a? String
-                   { type: 'text', entity: entities.strip }
+          { type: 'text', entity: entities.strip }
                  else
                    find_entity(entities, 'builtin.number')
                  end
