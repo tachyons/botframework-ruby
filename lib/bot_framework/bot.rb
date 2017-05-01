@@ -13,7 +13,7 @@ module BotFramework
       end
 
       def recognizer=(recognizer)
-        warn "DEPRECATED: Use add_recognizer method instead"
+        warn 'DEPRECATED: Use add_recognizer method instead'
         add_recognizer(recognizer)
       end
       deprecate :recognizer=, :add_recognizer, 2016, 5
@@ -65,13 +65,14 @@ module BotFramework
 
       def set_conversation_data(activity, data)
         data = BotFramework::BotData.new(data: data, e_tag: '*') if data.is_a? Hash
-        BotFramework::BotState.new('').set_conversation_data('channel_id' => activity.channel_id,
-                                                             'conversation_id' => activity.conversation.id,
-                                                             'bot_data' => data)
+        BotFramework::BotState.new(activity.service_url)
+                              .set_conversation_data('channel_id' => activity.channel_id,
+                                                     'conversation_id' => activity.conversation.id,
+                                                     'bot_data' => data)
       end
 
       def conversation_data(activity)
-        BotFramework::BotState.new('').get_conversation_data(
+        BotFramework::BotState.new(activity.service_url).get_conversation_data(
           'channel_id' => activity.channel_id,
           'conversation_id' => activity.conversation.id
         ).data || {}

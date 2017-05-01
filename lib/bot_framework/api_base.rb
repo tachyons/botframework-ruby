@@ -11,6 +11,7 @@ module BotFramework
 
     def api_get(local_uri, _opts = {})
       uri = URI.join(service_url, URI.escape(local_uri))
+      BotFramework.logger.info uri
       JSON.parse(BotFramework.connector.token.get(uri).body)
     end
 

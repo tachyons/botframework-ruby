@@ -4,5 +4,6 @@ BotFramework.configure do |connector|
 end
 
 BotFramework::Bot.on :activity do |activity|
+  conversation_data(activity)
   reply(activity, activity.text)
 end
