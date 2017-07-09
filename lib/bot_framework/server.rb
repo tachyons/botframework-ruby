@@ -17,12 +17,10 @@ module BotFramework
       @response.finish
     end
 
-    # TODO: reply in separate thread t avoid timeout
+    # TODO: reply in separate thread to avoid timeout
     def receive
-      # Thread.new {
       activity = Activity.new.build_from_hash JSON.parse(@request.body.read)
       Bot.receive(activity)
-      # }
     end
 
     def headers
@@ -34,7 +32,6 @@ module BotFramework
            .flatten]
     end
 
-    # Use logger instead of puts
     def verify
       validator = TokenValidator.new(headers)
       if validator.valid?
