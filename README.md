@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/tachyons/botframework-ruby.svg?branch=master)](https://travis-ci.org/tachyons/botframework-ruby)
 [![Build status](https://ci.appveyor.com/api/projects/status/fdbwdbvv3viswwec?svg=true)](https://ci.appveyor.com/project/tachyons/botframework-ruby)
 
-Ruby client to make statefull bots using microsoft botframework . Currently under development , don't try this in under production till v1.0
+Ruby client to make stateful bots using the Microsoft Bot Framework. 
+
+Currently under development; don't try this in production until v1.0
 
 ## Installation
 
@@ -23,7 +25,8 @@ Or install it yourself as:
 
 ## Usage
 
-Simple echo bot
+Simple echo bot:
+
 ```ruby
 BotFramework.configure do |connector|
   connector.app_id = ENV['MICROSOFT_APP_ID']
@@ -48,10 +51,10 @@ end
 
 ## Emulator
 
-You can use botframework emulator for testing your bot in local system.
+You can use Bot Framework Emulator for testing your bot in local system.
 * Download https://github.com/Microsoft/BotFramework-Emulator
 * run `rackup` in the bot directory
-* Give url(default url for rackup is `localhost:9292`) and botframework credentials in the emulator
+* Give url(default url for rackup is `localhost:9292`) and Bot Framework credentials in the emulator
 
 ![emulator1](images/emulator1.png)
 ![emulator2](images/emulator2.png)
