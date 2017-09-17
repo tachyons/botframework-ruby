@@ -28,8 +28,8 @@ module BotFramework
       Hash[*env.select { |k, _v| k.start_with? 'HTTP_' }
                .collect { |k, v| [k.sub(/^HTTP_/, ''), v] }
                .collect { |k, v| [k.split('_').collect(&:capitalize).join('-'), v] }
-           .sort
-           .flatten]
+               .sort
+               .flatten]
     end
 
     def verify

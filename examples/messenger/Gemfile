@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.4.0'
+ruby '2.4.2'
 
-gem 'bmtc', github: 'tachyons/bmtc', branch: 'master'
+# gem 'bot_framework', path: '../../../bot_framework'
 gem 'bot_framework', github: 'tachyons/botframework-ruby', branch: 'master'
 gem 'luis', github: 'tachyons/luis', branch: 'master'
 gem 'pry'

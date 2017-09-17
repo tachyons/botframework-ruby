@@ -4,7 +4,7 @@ module BotFramework
   # Abstract class for dialog
   module Dialogs
     class Dialog < ActionSet
-      RESUME_REASONS = [:completed, :not_completed, :canceled, :back, :forward, :reprompt].freeze
+      RESUME_REASONS = %i[completed not_completed canceled back forward reprompt].freeze
       def begin(session, _opts = {})
         reply_recieved(session)
       end

@@ -8,6 +8,12 @@ module BotFramework
 
     # URL Picture which will appear on the button, next to text label.
     attr_accessor :image
+    # Text for this action
+
+    attr_accessor :text
+
+    # (Optional) text to display in the chat feed if the button is clicked
+    attr_accessor :display_text
 
     # Supplementary parameter for action. Content of this property depends on the ActionType
     attr_accessor :value
@@ -19,25 +25,10 @@ module BotFramework
         type: :String,
         title: :String,
         image: :String,
+        text:  :String,
+        display_text: :String,
         value: :String
       }
-    end
-
-    # Initializes the object
-    # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      self.type = attributes[:type] if attributes.key?(:type)
-
-      self.title = attributes[:title] if attributes.key?(:title)
-
-      self.image = attributes[:image] if attributes.key?(:image)
-
-      self.value = attributes[:value] if attributes.key?(:value)
     end
   end
 end

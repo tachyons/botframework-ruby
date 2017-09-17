@@ -36,25 +36,25 @@ module BotFramework
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      self.title = attributes[:title] if attributes.key?(:title)
-
-      self.subtitle = attributes[:subtitle] if attributes.key?(:subtitle)
-
-      self.text = attributes[:text] if attributes.key?(:text)
-
-      self.image = attributes[:image] if attributes.key?(:image)
-
-      self.price = attributes[:price] if attributes.key?(:price)
-
-      self.quantity = attributes[:quantity] if attributes.key?(:quantity)
-
-      self.tap = attributes[:tap] if attributes.key?(:tap)
-    end
+    #   def initialize(attributes = {})
+    #     return unless attributes.is_a?(Hash)
+    #
+    #     # convert string to symbol for hash key
+    #     attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+    #
+    #     self.title = attributes[:title] if attributes.key?(:title)
+    #
+    #     self.subtitle = attributes[:subtitle] if attributes.key?(:subtitle)
+    #
+    #     self.text = attributes[:text] if attributes.key?(:text)
+    #
+    #     self.image = attributes[:image] if attributes.key?(:image)
+    #
+    #     self.price = attributes[:price] if attributes.key?(:price)
+    #
+    #     self.quantity = attributes[:quantity] if attributes.key?(:quantity)
+    #
+    #     self.tap = attributes[:tap] if attributes.key?(:tap)
+    #   end
   end
 end

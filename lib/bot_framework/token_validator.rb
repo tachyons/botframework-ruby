@@ -46,7 +46,7 @@ module BotFramework
 
     def valid_header?
       # The token was sent in the HTTP Authorization header with "Bearer" scheme
-      condition = auth_header and auth_header.start_with? 'Bearer'
+      (condition = auth_header) && auth_header.start_with?('Bearer')
       errors << 'Invalid headers' unless condition
       condition
     end
@@ -62,7 +62,9 @@ module BotFramework
     def valid_iss?
       # The token contains an issuer claim with value of https://api.botframework.com
       iss = JWT.decode(token, nil, false).first['iss']
-      condition = ['https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/', 'https://api.botframework.com'].include?(iss)
+      condition = ['https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/',
+                   'https://api.botframework.com',
+                   'https://sts.windows.net/d6d49420-f39b-4df7-a1dc-d59a935871db/'].include?(iss)
       errors << "Invalid iss #{iss}" unless condition
       condition
     end
@@ -71,7 +73,7 @@ module BotFramework
       # The token contains an audience claim with a value equivalent to your bot’s Microsoft App ID.
       aud = JWT.decode(token, nil, false).first['aud']
       condition = ['https://graph.microsoft.com', BotFramework.connector.app_id].include?(aud)
-      errors << 'Invalid audience' unless condition
+      errors << "Invalid audience #{aud}" unless condition
       condition
     end
 

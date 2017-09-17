@@ -14,8 +14,7 @@ module BotFramework
       attachment: 'default_file'
     }
 
-    def self.configure(_options)
-    end
+    def self.configure(_options); end
 
     def begin(session, options = {})
       options[:prompt_after_action] = options[:prompt_after_action] || options[:prompt_after_action]
@@ -36,26 +35,19 @@ module BotFramework
 
     def create_prompt; end
 
-    def self.text
-    end
+    def self.text; end
 
-    def self.number
-    end
+    def self.number; end
 
-    def self.confirm
-    end
+    def self.confirm; end
 
-    def self.choice
-    end
+    def self.choice; end
 
-    def self.time
-    end
+    def self.time; end
 
-    def self.attachment
-    end
+    def self.attachment; end
 
-    def self.disambiguate
-    end
+    def self.disambiguate; end
 
     private
   end

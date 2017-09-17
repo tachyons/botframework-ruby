@@ -347,12 +347,10 @@ module BotFramework
     end
 
     #  Deletes all dialog stack entries starting with the specified index and returns the new active dialog.
-    def self.prune_dialog_stack(_stack, _start)
-    end
+    def self.prune_dialog_stack(_stack, _start); end
 
     # Ensures that all of the entries on a dialog stack reference valid dialogs within a library hierarchy.
-    def self.validate_dialog_stack(_stack, _root)
-    end
+    def self.validate_dialog_stack(_stack, _root); end
 
     ## Message routing
     #########################

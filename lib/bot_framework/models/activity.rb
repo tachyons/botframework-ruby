@@ -94,13 +94,17 @@ module BotFramework
       }
     end
 
+    def reply_activity(activity)
+      Conversation.new(service_url).reply_to_activity(conversation.id, id, activity)
+    end
+
     def reply(message)
       return false if type != 'message'
       new_activity = Activity.new(type: 'message',
                                   locale: 'en',
                                   text: message,
                                   from: recipient.to_hash)
-      Conversation.new(service_url).reply_to_activity(conversation.id, id, new_activity)
+      reply_activity(new_activity)
     end
   end
 end

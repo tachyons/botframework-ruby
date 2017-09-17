@@ -23,11 +23,11 @@ BotFramework::Bot.on :typing do |activity|
 end
 
 BotFramework::Bot.on_intent 'HelpIntent' do |activity, _intents|
-  reply(activity, "<HELP TEXT HERE>")
+  reply(activity, '<HELP TEXT HERE>')
 end
 
 BotFramework::Bot.on_intent 'HelloIntent' do |activity, _intents|
-  reply(activity, "Hello")
+  reply(activity, 'Hello')
 end
 
 BotFramework::Bot.on_intent :default do |activity, _intents|
