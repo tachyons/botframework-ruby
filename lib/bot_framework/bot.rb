@@ -45,7 +45,7 @@ module BotFramework
       end
 
       def receive(payload)
-        trigger(payload.type.to_sym)
+        trigger(payload.type.to_sym, payload)
         # Run on default
         trigger(:activity, payload)
         recognizers.each do |recognizer|
