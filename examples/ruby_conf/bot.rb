@@ -6,7 +6,7 @@ end
 
 SPEAKER_DATA = YAML.load_file('speaker_data.yaml')
 RUBY_CONF_DATA = {
-  'when'=> 'Jan 27, 28, 29',
+  'when' => 'Jan 27, 28, 29',
   'where' => 'Kochi',
   'venue' => 'Le Méridien Kochi',
   'organisers' => 'Emerging technology trust',
