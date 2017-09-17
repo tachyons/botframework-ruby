@@ -59,7 +59,7 @@ BotFramework::Bot.on :message do |activity|
 
   # Receipt card
 
-  if activty.channel_id != 'facebook'
+  if activity.channel_id != 'facebook'
     activity.reply_activity(
       BotFramework::Activity.new(
         type: 'message',
