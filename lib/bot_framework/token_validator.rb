@@ -1,9 +1,9 @@
+require 'uri'
+
 module BotFramework
   class TokenValidator
     include HTTParty
     attr_accessor :headers, :errors
-
-    OPEN_ID_CONFIG_URI = 'https://api.aps.skype.com/v1/.well-known/openidconfiguration'.freeze
 
     def initialize(headers)
       @headers = headers
@@ -25,7 +25,7 @@ module BotFramework
     private
 
     def open_id_config
-      JSON.parse(self.class.get(OPEN_ID_CONFIG_URI).body)
+      JSON.parse(self.class.get(Connector::OPEN_ID_METADATA).body)
     end
 
     def jwks_uri
@@ -62,9 +62,13 @@ module BotFramework
     def valid_iss?
       # The token contains an issuer claim with value of https://api.botframework.com
       iss = JWT.decode(token, nil, false).first['iss']
-      condition = ['https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/',
-                   'https://api.botframework.com',
-                   'https://sts.windows.net/d6d49420-f39b-4df7-a1dc-d59a935871db/'].include?(iss)
+      begin
+        uri = URI.parse(iss)
+      rescue URI::InvalidURIError
+        return false
+      end
+
+      condition = uri.scheme == 'https' && Connector::ISSUER_DOMAINS.include?(uri.host.downcase)
       errors << "Invalid iss #{iss}" unless condition
       condition
     end
