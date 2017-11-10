@@ -14,6 +14,7 @@ module BotFramework
     EMULATOR_AUDIENCE_METADATA = 'https://login.microsoftonline.com/botframework.com/v2.0/.well-known/openid-configuration'.freeze
     EMULATOR_AUDIENCE = 'https://sts.windows.net/d6d49420-f39b-4df7-a1dc-d59a935871db/'.freeze
     STATE_END_POINT = 'https://state'.freeze
+    ISSUER_DOMAINS = ['sts.windows.net', 'api.botframework.com', 'login.microsoftonline.com'].freeze
 
     def initialize(options = {})
       @app_id = options[:app_id]
