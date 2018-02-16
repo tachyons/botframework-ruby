@@ -1,6 +1,7 @@
 # BotFramework
 
 [![Join the chat at https://gitter.im/botframework-ruby/Lobby](https://badges.gitter.im/botframework-ruby/Lobby.svg)](https://gitter.im/botframework-ruby/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Open Source Helpers](https://www.codetriage.com/tachyons/botframework-ruby/badges/users.svg)](https://www.codetriage.com/tachyons/botframework-ruby)
 
 [![Build Status](https://travis-ci.org/tachyons/botframework-ruby.svg?branch=master)](https://travis-ci.org/tachyons/botframework-ruby)
 [![Build status](https://ci.appveyor.com/api/projects/status/fdbwdbvv3viswwec?svg=true)](https://ci.appveyor.com/project/tachyons/botframework-ruby)
