@@ -1,4 +1,3 @@
-require_relative 'action_set'
 module BotFramework
   module Dialogs
     class RegExpRecognizer
