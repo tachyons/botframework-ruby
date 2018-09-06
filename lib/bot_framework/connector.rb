@@ -16,10 +16,9 @@ module BotFramework
     STATE_END_POINT = 'https://state'.freeze
     ISSUER_DOMAINS = ['sts.windows.net', 'api.botframework.com', 'login.microsoftonline.com'].freeze
 
-    def initialize(options = {})
-      @app_id = options[:app_id]
-      @app_secret = options[:app_secret]
-      yield(self) if block_given?
+    def initialize(config)
+      @app_id = config.app_id
+      @app_secret = config.app_secret
     end
 
     def client

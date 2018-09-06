@@ -8,12 +8,15 @@ require 'bot_framework/version'
 require 'bot_framework/errors'
 require 'bot_framework/util'
 require 'bot_framework/connector'
+require 'bot_framework/configuration'
 require 'bot_framework/api_base'
 require 'bot_framework/conversation'
 require 'bot_framework/bot_state'
 require 'bot_framework/token_validator'
 require 'bot_framework/bot'
 require 'bot_framework/server'
+
+require 'bot_framework/errors/configuration'
 # Models
 require 'bot_framework/models/base'
 require 'bot_framework/models/activity'
@@ -52,14 +55,26 @@ require 'bot_framework/dialogs/reg_exp_recognizer'
 
 module BotFramework
   class << self
-    attr_accessor :connector
+    attr_writer :configuration
+  end
 
-    def configure(*args, &block)
-      @connector = Connector.new(*args, &block)
-    end
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
 
-    def logger
-      @logger ||= defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
-    end
+  def self.reset
+    @configuration = Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
+  end
+
+  def self.logger
+    @logger ||= defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+  end
+
+  def self.connector
+    @connector ||= Connector.new(configuration)
   end
 end
