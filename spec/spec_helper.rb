@@ -103,6 +103,10 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+
+  ENV['BOT_FRAMEWORK_ACCESS'] ||= 'app_id'
+  ENV['BOT_FRAMEWORK_SECRET'] ||= 'app_secret'
+
   config.before(:all) do
     BotFramework.configure do |conf|
       conf.app_id = ENV['BOT_FRAMEWORK_ACCESS']
