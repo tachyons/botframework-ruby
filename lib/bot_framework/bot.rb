@@ -1,7 +1,6 @@
 module BotFramework
   class Bot
     class << self
-      extend Gem::Deprecate
       attr_accessor :recognizers
 
       def on(event, &block)
@@ -11,12 +10,6 @@ module BotFramework
       def on_intent(intent, &block)
         intent_callbacks[intent] = block
       end
-
-      def recognizer=(recognizer)
-        warn 'DEPRECATED: Use add_recognizer method instead'
-        add_recognizer(recognizer)
-      end
-      deprecate :recognizer=, :add_recognizer, 2016, 5
 
       def add_recognizer(recognizer)
         recognizers << recognizer
