@@ -3,8 +3,8 @@ module BotFramework
   module Dialogs
     class EntityRecognizer
       DATE_REGEX = /^\d{4}-\d{2}-\d{2}/i
-      YES_REGEX = /^(1|y|yes|yep|sure|ok|true)(\W|$)/i
-      NO_REGX = /^(2|n|no|nope|not|false)(\W|$)/i
+      YES_REGEX = /^(1|y|yes|yep|sure|ok|true|yeah)(\W|$)/i
+      NO_REGX = /^(2|n|no|nope|not|false|never)(\W|$)/i
       NUMBER_REGEX = /[+-]?(?:\d+\.?\d*|\d*\.?\d+)/
       ORDINAL_WORDS_REGEX = /first|second|third|fourth|fifth|sixth|seventh|eigth|ninth|tenth/
       def initialize(*args); end

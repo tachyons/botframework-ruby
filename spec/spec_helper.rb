@@ -106,6 +106,7 @@ RSpec.configure do |config|
 
   ENV['BOT_FRAMEWORK_ACCESS'] ||= 'app_id'
   ENV['BOT_FRAMEWORK_SECRET'] ||= 'app_secret'
+  ENV['TZ']                   ||= 'Asia/Kolkata'
 
   config.before(:all) do
     BotFramework.configure do |conf|
