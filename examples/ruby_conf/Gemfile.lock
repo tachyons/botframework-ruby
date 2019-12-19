@@ -62,7 +62,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     puma (3.8.2)
-    rack (2.0.1)
+    rack (2.0.8)
     rb-readline (0.5.4)
     slop (3.6.0)
     timers (4.1.2)
