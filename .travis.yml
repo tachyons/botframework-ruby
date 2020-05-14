@@ -5,6 +5,9 @@ rvm:
   - 2.4.0
   - 2.4.1
   - 2.5.1
+  - 2.6.3
+  - jruby
+  - truffleruby
 before_install:
   - gem install bundler
   - export TZ=Asia/Kolkata
