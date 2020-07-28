@@ -43,7 +43,7 @@ GEM
     hitimes (1.2.4)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
-    json (2.1.0)
+    json (2.3.1)
     jwt (1.5.6)
     method_source (0.8.2)
     multi_json (1.12.1)
